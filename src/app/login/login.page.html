@@ -1,0 +1,49 @@
+<ion-content padding>
+  <ion-card class="welcome-card">
+    <img src="/assets/shapes.svg" alt="" />
+    <ion-card-header>
+      <ion-card-subtitle>Get Started</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Email <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input (keyup.enter)="onLoginSubmit()" required type="email" autofocus="on" formControlName="email">
+        </ion-input>
+      </ion-item>
+      <div class="error-msg" *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].touched">
+        <div *ngIf="loginForm.controls['email'].errors.required && loginForm.controls['email'].touched">Email is
+          required.</div>
+        <div *ngIf="loginForm.controls['email'].errors?.pattern">Email must be a valid email address.</div>
+      </div>
+
+      <ion-item>
+        <ion-label position="stacked">Password <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input (keyup.enter)="onLoginSubmit()" required clearOnEdit="false" [type]="showPass ? 'password' : 'text'"
+          formControlName="password">
+        </ion-input>
+        <ion-icon style="margin-top: 8%" [name]="showPass ? 'eye' : 'eye-off'" slot="end" (click)="showPass = !showPass"
+          item-right *ngIf="loginForm.controls.password.value?.length > 0"></ion-icon>
+      </ion-item>
+      <div class="error-msg" *ngIf="loginForm.controls['password'].errors && !loginForm.controls['password'].pristine">
+        <div *ngIf="loginForm.controls['password'].errors.required">Password is required.</div>
+      </div>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button type="submit" expand="block" class="ion-no-margin" [disabled]="loginForm.invalid"
+        (click)="onLoginSubmit()">
+        Login</ion-button>
+
+      <ion-label class="forgot-password-label"> <a (click)="forgotPass()">Forgot Password</a></ion-label>
+    </div>
+  </form>
+
+  <div class="ion-padding">
+    <ion-button expand="block" color="secondary" [routerLink]="['/register']">Register</ion-button>
+  </div>
+</ion-content>

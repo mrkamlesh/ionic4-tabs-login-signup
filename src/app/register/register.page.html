@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="welcome-card">
+    <img src="/assets/shapes.svg" alt="" />
+    <ion-card-header>
+      <ion-card-subtitle>Get Started</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Name <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text" autofocus="on" formControlName="name"></ion-input>
+      </ion-item>
+      <div color="danger" *ngIf="registerForm.controls['name'].errors && !registerForm.controls['name'].pristine">
+        <div *ngIf="registerForm.controls['name'].errors.required">Name is required.</div>
+      </div>
+
+      <ion-item>
+        <ion-label position="stacked">Email <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <div color="danger" *ngIf="registerForm.controls['email'].errors && !registerForm.controls['email'].pristine">
+        <div *ngIf="registerForm.controls['email'].errors.required">Email is required.</div>
+        <div *ngIf="registerForm.controls['email'].errors?.pattern">Email must be a valid email address.</div>
+      </div>
+
+      <ion-item>
+        <ion-label position="stacked">Password <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required clearOnEdit="false" [type]="showPass ? 'password' : 'text'" formControlName="password">
+        </ion-input>
+        <ion-icon [name]="showPass ? 'eye' : 'eye-off'" slot="end" (click)="showPass = !showPass" item-right
+          *ngIf="registerForm.controls.password.value.length > 0"></ion-icon>
+      </ion-item>
+      <div class="error-msg"
+        *ngIf="registerForm.controls['password'].errors && !registerForm.controls['password'].pristine">
+        <div *ngIf="registerForm.controls['password'].errors.required">Password is required.</div>
+      </div>
+
+      <ion-item>
+        <ion-label position="stacked">Confirm Password <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required clearOnEdit="false" [type]="showPass ? 'password' : 'text'"
+          formControlName="confirmPassword">
+        </ion-input>
+        <ion-icon [name]="showPass ? 'eye' : 'eye-off'" slot="end" (click)="showPass = !showPass" item-right
+          *ngIf="registerForm.controls.confirmPassword.value.length > 0"></ion-icon>
+      </ion-item>
+      <div class="error-msg"
+        *ngIf="registerForm.controls['confirmPassword'].errors && !registerForm.controls['confirmPassword'].pristine">
+        <div *ngIf="registerForm.controls['confirmPassword'].errors.required">Confirm password is required.</div>
+        <div *ngIf="registerForm.controls['confirmPassword'].errors.mustMatch">Passwords must match</div>
+      </div>
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-item>
+        <ion-label text-wrap>By signing up you agree to our <a (click)="termsConditions()">Terms & Conditions</a>
+        </ion-label>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" class="ion-no-margin" [disabled]="registerForm.invalid"
+        (click)="onSubmit()">
+        Signup</ion-button>
+    </div>
+  </form>
+
+</ion-content>

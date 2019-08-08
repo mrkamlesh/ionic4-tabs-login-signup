@@ -13,6 +13,15 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../tab1/tab1.module#Tab1PageModule'
+          },
+          {
+            path: 'details',
+            children: [
+              {
+                path: '',
+                loadChildren: '../case-details/case-details.module#CaseDetailsPageModule'
+              }
+            ]
           }
         ]
       },
@@ -36,14 +45,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/home/tabs/tab1',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/home/tabs/tab1',
     pathMatch: 'full'
   }
 ];
@@ -54,4 +63,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

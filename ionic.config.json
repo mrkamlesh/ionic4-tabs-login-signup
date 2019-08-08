@@ -1,5 +1,7 @@
 {
   "name": "ionicAuthTabs",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
