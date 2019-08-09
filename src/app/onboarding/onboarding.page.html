@@ -1,0 +1,42 @@
+<ion-content padding>
+
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-subtitle class="text-center">Welcome</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-slides pager="true" [options]="slideOpts" class="slides-height">
+    <ion-slide>
+      <h1>Hello, Get Started with Ionic 4</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>The template should be written as ion-slide</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>The Slides component is a multi-section container.</h1>
+    </ion-slide>
+  </ion-slides>
+
+
+  <div class="ion-padding">
+    <ion-button expand="block" fill="clear" class="clear-radius" (click)="handleJoinClick()">Join with Email
+    </ion-button>
+  </div>
+  <div class="ion-padding">
+    <ion-button expand="block" color="danger" (click)="handleGoogleLogin()">
+      <ion-icon slot="start" name="logo-google"></ion-icon>
+      Continue with Google
+    </ion-button>
+  </div>
+  <div class="ion-padding">
+    <ion-button expand="block" color="tertiary" (click)="handleFacebookLogin()">
+      <ion-icon slot="start" name="logo-facebook"></ion-icon>
+      Continue with Facebook
+    </ion-button>
+  </div>
+
+  <div class="ion-padding text-center" style="color: beige;">
+    <p (click)="handleLoginClick()">Have an account? <strong>Log in.</strong></p>
+  </div>
+</ion-content>

@@ -1,0 +1,19 @@
+ion-content{
+    --background: url(./../../assets/images/bg.jpg);
+    --background-repeat: no-repeat;
+    --background-size: cover;
+    .forgot-password-label {
+        float: right
+    }
+}
+.slides-height {
+    height: 150px;
+    color: beige;
+}
+.text-center {
+    text-align: center;
+}
+.clear-radius {
+    border: 1px solid;
+    border-radius: 12px;
+}
